@@ -1,7 +1,3 @@
-
-
-//к
-
 //Вот функция, которую написал жук:
 Function Pizdec($text as string)
   Print ($text)
