@@ -19,3 +19,5 @@
 			g_nflake [ i ].fValueAn# = speed# / 100.0
 			g_nflake [ i ].fValueBn# = 0.0
 		endif
+		SetSpritePosition    ( g_nflake [ i ].iSpritx, fbflakeX#, fbflakeY# )
+	next i
