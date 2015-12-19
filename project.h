@@ -1,4 +1,15 @@
 //Вот функция, которую написал жук:
+
+    for i = 1 to 50
+		g_nflake [ i ].iSpritx = 0
+		g_nflake [ i ].fSpeedn#  = 0.0
+		g_nflake [ i ].fValueAn# = 0.0
+		g_nflake [ i ].fValueBn# = 0.0
+	next i
+//END of Function
+
+//NEW FUNCTION:
+
 	for i = 1 to 50
         // get the new location
 		flakeX#   = GetSpriteX    ( g_nflake [ i ].iSpritx ) 
