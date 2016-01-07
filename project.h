@@ -1,34 +1,40 @@
 //Вот функция, которую написал жук:
+//DARK STORY
 
-    for i = 1 to 50
-		g_nflake [ i ].iSpritx = 0
-		g_nflake [ i ].fSpeedn#  = 0.0
-		g_nflake [ i ].fValueAn# = 0.0
-		g_nflake [ i ].fValueBn# = 0.0
-	next i
-//END of Function
+//Здесь настройки экрана, которые я тоже зафакапил
+SetVirtualResolution(800,600)
+SetWindowTitle( "NonameProject" )
+//Это я очертил края, чтобы видеть, где начало экрана:
+SetClearColor(200,200,200)
+SetBorderColor(0,0,0)
 
-//NEW FUNCTION:
+ //ЗАГРУЗКА ФАЙЛОВ
+ //здесь я загружаю тайл стены:
+ wall = CreateSprite(LoadImage("wall31.png"))
+ //А здесь я его отодвинул на 100 пикселей от верха и на 100 слева направо
+ SetSpritePosition(wall, 100, 100)
+ 
+ 
+ //САМОЕ ИНТЕРЕСНОЕ
+ OpenToRead(1,"map.txt")	 //* Открыл файл, в файле строка "1,0,1,0,1"
+ tile = ReadInteger(1) 		//*Просто попробовал три разных способа прочесть текст из файла
+ tile# = ReadFloat(1) 		//*Второй способ
+ tile$ = ReadString(1)		//*Третий способ
+ tileline$ = ReadLine(1)	//*Не придумал, что мне с этим делать, не смог заставить работать правильно
 
-	for i = 1 to 50
-        // get the new location
-		flakeX#   = GetSpriteX    ( g_nflake [ i ].iSpritx ) 
-		flakeY#   = GetSpriteY    ( g_nflake [ i ].iSpritx ) + g_nflake [ i ].fSpeedn#
+ //А ТУТ БУДЕТ ВЕЛИКОЛЕПНАЯ ПО ПРОСТОТЕ ЗАГРУЗКА УРОВНЯ ИЗ ВЗАТОГО ВЫШЕ ФАЙЛА!
+ If tile = 1 then SetSpritePosition(wall, 0,0) //Однако, пока здесь полная херня
+//Петля:
+Do
+print (tile) 	//*Результат команды - 741354545, ХЗ ЧТО ЭТО ВСЕ ЗНАЧИТ!
+print (tile#) 	//*Результат - 0.000000 (кто бы мог подумать)
+print (tile$)	//*Результат - 1 (НО! Это сраный стринг, который я не могу использовать, да и только первая цифра, как достать вторую?)
+Sync()	// - Обновляет и рисует экран
+loop	// - Повторяет петлю
 
-        //  wavy movement!
-		g_nflake [ i ].fValueBn# = g_nflake [ i ].fValueBn# + g_nflake [ i ].fValueAn#
-		flakeX# = flakeX# + cos ( g_nflake [ i ].fValueBn# * 180 / 3.14 )/2
 
-		if  flakeY#  > 105 
-			flakeX# = Random ( -100, 100 )
-			flakeY# = -110 + Random ( 0, 100 )
-			flakeX#   = ScreenToWorldX ( flakeX# )
-			flakeY#   = ScreenToWorldY ( flakeY# )
-			speed# = Random ( 5, 10 )
-			g_nflake [ i ].fSpeedn# = speed# / 10.0
-			speed# = Random ( 0.1, 2 )
-			g_nflake [ i ].fValueAn# = speed# / 100.0
-			g_nflake [ i ].fValueBn# = 0.0
-		endif
-		SetSpritePosition    ( g_nflake [ i ].iSpritx, flakeX#, flakeY# )
-	next i
+
+
+
+
+
